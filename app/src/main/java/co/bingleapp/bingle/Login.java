@@ -255,7 +255,9 @@ public class Login extends AppCompatActivity  {
             user_Name = acct.getDisplayName();
             editor.putString("name", user_Name);
             String email = acct.getEmail();
-            editor.putString("email", email);
+            String personId = acct.getId();
+            editor.putString("sharedUID", personId);
+            editor.putString("sharedEmail", email);
             editor.apply();
 
         }
@@ -307,7 +309,7 @@ public class Login extends AppCompatActivity  {
 
     private void attemplogin() {
         String email = mSignUpEmail.getText().toString();
-        editor.putString("email", email);
+        editor.putString("sharedEmail", email);
         editor.apply();
         String password = mSignUpPassword.getText().toString();
 
@@ -328,7 +330,7 @@ public class Login extends AppCompatActivity  {
                 else {
                     currentFirebaseUser = mAuth.getInstance().getCurrentUser();
                     user_UID = currentFirebaseUser.getUid();
-                    editor.putString("UID", user_UID);
+                    editor.putString("sharedUID", user_UID);
                     editor.apply();
                     Toasty.success(getApplicationContext(), "Success", Toast.LENGTH_SHORT, true).show();
 

@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import static android.content.Context.MODE_PRIVATE;
+import static co.bingleapp.bingle.Login.USER_PREFS;
 
 
 /**
@@ -137,7 +138,7 @@ public class ProfileSettings extends Fragment {
         signOutButton = (Button) rootView.findViewById(R.id.buttonSignOut);
 
         //setting text to text views
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
         mNameEditTextView.setText(preferences.getString("sharedName", null));
         mEmailEditTextView.setText(preferences.getString("sharedEmail", null));
         mGenderEditTextView.setText(preferences.getString("sharedGender", null));
@@ -193,7 +194,7 @@ public class ProfileSettings extends Fragment {
 
             }
         });
-        final SharedPreferences pref = this.getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        final SharedPreferences pref = this.getActivity().getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
 
         saveProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override

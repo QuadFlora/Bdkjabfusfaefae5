@@ -12,7 +12,8 @@
         rsb:rsb_indicator_height="25dp"
         rsb:rsb_indicator_width="20dp"
         rsb:rsb_min="18"
-        rsb:rsb_max="35"/>
+        rsb:rsb_max="35"
+        />
 
 
 </LinearLayout>

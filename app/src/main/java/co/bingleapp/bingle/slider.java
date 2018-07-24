@@ -109,7 +109,7 @@ public class slider extends AppCompatActivity implements GoogleApiClient.Connect
                     latitude = mLastLocation.getLatitude();
                     longitude = mLastLocation.getLongitude();
                     getAddress();
-                    editor.putString("City", city);
+                    editor.putString("sharedCity", city);
                     editor.apply();
                     showToast(city);
 

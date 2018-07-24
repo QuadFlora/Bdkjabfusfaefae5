@@ -66,6 +66,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
     //Elements in layout
     public RadioGroup mRadioGroup;
     public DatePicker mdatePicker;
+    private EditText mBio;
     public EditText phone;
     public ProgressDialog progressDialog;
     public RadioButton mCollege;
@@ -75,7 +76,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
     public RangeSeekBar rangeSeekBar;
     Calendar mCalendar;
     private com.wang.avi.AVLoadingIndicatorView formProgress;
-   Float minage,maxage;
+   int minage,maxage;
    private SharedPreferences prefs;
     private SharedPreferences loc_prefs;
     private DatabaseReference mDatabase;
@@ -95,6 +96,8 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
     private String userDOB;
     private String TAG = "retrieve-ruser";
     private List user_Hobbies;
+    private String uName;
+    private String userBio;
 
     //Retrieve data
     private String rlocation;
@@ -117,9 +120,9 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
         prefs = getSharedPreferences(USER_PREFS, MODE_PRIVATE);
         loc_prefs = getSharedPreferences(LOC_PREFS, MODE_PRIVATE);
         ruser_Name = prefs.getString("name", null);
-        rlocation = loc_prefs.getString("City", null);
-        remail = prefs.getString("email",null);
-        rUID = prefs.getString("UID",null);
+        rlocation = loc_prefs.getString("sharedCity", null);
+        remail = prefs.getString("sharedEmail",null);
+        rUID = prefs.getString("sharedUID",null);
 
         Toast.makeText(getApplicationContext(),ruser_Name,Toast.LENGTH_SHORT).show();
 
@@ -127,7 +130,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
         mUser_Database = FirebaseDatabase.getInstance().getReference();
 
 
-        String[] mySteps = {"What should we call you?", "I am","My birthday is on", "Studying in", "Things you love?", "Matches I would prefer in between"};
+        String[] mySteps = {"What should we call you?", "I am","My birthday is on", "Studying in", "Things you love?", "Matches I would prefer in between", "How will you describe yourself"};
         int colorPrimary = ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary);
         int colorPrimaryDark = ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark);
 
@@ -166,6 +169,10 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
             case 5:
                 view = createAgeRangeStep();
                 break;
+            case 6:
+                view = createBio();
+                break;
+
         }
         return view;
     }
@@ -178,16 +185,13 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
             name = new EditText(this);
             name.setText(ruser_Name);
             name.setSingleLine(true);
-            name.setHint("Your name");
         }
         else {
             name = new EditText(this);
             name.setSingleLine(true);
             name.setHint("Your name");
         }
-        //setting already provided name
-        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        name.setText(preferences.getString("sharedName", null));
+        Toast.makeText(getApplicationContext(),rUID,Toast.LENGTH_SHORT).show();
 
         return name;
     }
@@ -198,6 +202,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
         LinearLayout genderLayoutContent = (LinearLayout) inflater.inflate(R.layout.activity_gender, null, false);
 
         mRadioGroup = findViewById(R.id.radiogroup);
+
 
         return genderLayoutContent;
 
@@ -242,11 +247,25 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
         return hobbiesLayoutContent;
     }
 
+    private View createBio() {
+        // In this case we generate the view by inflating a XML file
+        LayoutInflater inflater = LayoutInflater.from(getBaseContext());
+        LinearLayout bioLayoutContent = (LinearLayout) inflater.inflate(R.layout.bio, null, false);
+
+        mBio = findViewById(R.id.bio_editext);
+
+
+        return bioLayoutContent;
+
+    }
+
     @Override
     public void onStepOpening(int stepNumber) {
         mRadioGroup = findViewById(R.id.radiogroup);
         mdatePicker = (findViewById(R.id.dobdatePicker));
         mCollege = findViewById(R.id.collegeSelect_radioButton);
+        formProgress = findViewById(R.id.Form_progressBar);
+        mBio = findViewById(R.id.bio_editext);
 
         mChips = findViewById(R.id.nacho_text_view);
         Resources res = getResources();
@@ -295,6 +314,9 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
             case 5:
                 checkAgeRange();
                 break;
+            case 6:
+                checkBio();
+                break;
 
 
 
@@ -306,10 +328,12 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
     private void checkName() {
         if(name.length() >= 3 && name.length() <= 40) {
 
-            SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = pref.edit();
+            uName = name.getText().toString();
             edit.putString("sharedName", name.getText().toString());
             edit.apply();
+            Toast.makeText(getApplicationContext(),uName,Toast.LENGTH_SHORT).show();
 
             stepComplete();
         } else {
@@ -328,10 +352,11 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
             final RadioButton selectedGender = findViewById(selectId);
             userGender = selectedGender.getText().toString();
 
-            SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("sharedGender", userGender);
             edit.apply();
+            Toast.makeText(getApplicationContext(),rlocation,Toast.LENGTH_SHORT).show();
 
             stepComplete();
         }
@@ -341,11 +366,11 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
         dobday = mdatePicker.getDayOfMonth();
         dobmonth = 1+mdatePicker.getMonth();
         dobyear = mdatePicker.getYear();
-        String date = dobyear + "-" + dobmonth + "-" + dobday;
+        userDOB = dobyear + "-" + dobmonth + "-" + dobday;
 
-        SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
-        edit.putString("sharedDob", date);
+        edit.putString("sharedDob", userDOB);
         edit.apply();
 
         mCalendar = Calendar.getInstance();
@@ -378,7 +403,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
         if (mCollege.isChecked()) {
             college = mCollege.getText().toString();
 
-            SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("sharedEducation", college);
             edit.apply();
@@ -395,7 +420,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
             // Do something with the text of each chip
             user_Hobbies = mChips.getChipValues();
 
-        SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         edit.putString("sharedInterests", test);
         edit.apply();
@@ -404,31 +429,51 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
 
     private void checkAgeRange(){
 
-        rangeSeekBar.setOnRangeChangedListener(new OnRangeChangedListener() {
-            @Override
-            public void onRangeChanged(RangeSeekBar view, float min, float max, boolean isFromUser) {
-                rangeSeekBar.setIndicatorText((int)min+"");
-                minage = min;
-                maxage = max;
-            }
+       rangeSeekBar.setOnRangeChangedListener(new OnRangeChangedListener() {
+           @Override
+           public void onRangeChanged(RangeSeekBar view, float min, float max, boolean isFromUser) {
 
-            @Override
-            public void onStartTrackingTouch(RangeSeekBar view, boolean isLeft) {
+                   minage = (int) min;
+                   maxage = (int) max;
 
-            }
+           }
 
-            @Override
-            public void onStopTrackingTouch(RangeSeekBar view, boolean isLeft) {
+           @Override
+           public void onStartTrackingTouch(RangeSeekBar view, boolean isLeft) {
 
-            }
-        });
-        String ageRange = minage + "-" + maxage;
-        SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+           }
+
+           @Override
+           public void onStopTrackingTouch(RangeSeekBar view, boolean isLeft) {
+
+           }
+       });
+        if((minage<15) && (maxage<15)){
+            minage = 18;
+            maxage = 22;
+        }
+
+
+        String ageRange = minage+"-"+maxage;
+        SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         edit.putString("sharedAgeRange", ageRange);
         edit.apply();
+        Toast.makeText(getApplicationContext(),ageRange,Toast.LENGTH_SHORT).show();
         stepComplete();
 
+    }
+
+
+    private void checkBio() {
+        userBio = mBio.getText().toString();
+        if(userBio.length() >= 3 && userBio.length() <= 140) {
+            stepComplete();
+        } else {
+            // This error message is optional (use null if you don't want to display an error message)
+            String errorMessage = "The bio must be between 3 and 140 characters";
+            verticalStepperForm.setActiveStepAsUncompleted(errorMessage);
+        }
     }
 
 
@@ -436,12 +481,19 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
 
 
     private void writeNewUser() {
-        mDatabase.child("Location").child(rlocation).child(rUID).child("name").setValue(ruser_Name);
-        mDatabase.child("Location").child(rlocation).child(rUID).child("email").setValue(remail);
-        mDatabase.child("Location").child(rlocation).child(rUID).child("gender").setValue(userGender);
-        mDatabase.child("Location").child(rlocation).child(rUID).child("dateofbirth").setValue(userDOB);
-        mDatabase.child("Location").child(rlocation).child(rUID).child("education").setValue(college);
-        mDatabase.child("Location").child(rlocation).child(rUID).child("interests").setValue(user_Hobbies);
+        mDatabase.child("Location").child(rlocation).child("Users").child(rUID).child("name").setValue(uName);
+        mDatabase.child("Location").child(rlocation).child("Users").child(rUID).child("email").setValue(remail);
+        mDatabase.child("Location").child(rlocation).child("Users").child(rUID).child("gender").setValue(userGender);
+        mDatabase.child("Location").child(rlocation).child("Users").child(rUID).child("dateofbirth").setValue(userDOB);
+        mDatabase.child("Location").child(rlocation).child("Users").child(rUID).child("education").setValue(college);
+        mDatabase.child("Location").child(rlocation).child("Users").child(rUID).child("interests").setValue(user_Hobbies);
+
+        if(userGender.equals("Male")) {
+            mDatabase.child("Location").child(rlocation).child("IdleMale").child(rUID).setValue(rUID);
+        }
+        if(userGender.equals("Female")){
+            mDatabase.child("Location").child(rlocation).child("IdleFemale").child(rUID).setValue(rUID);
+        }
 
     }
 
