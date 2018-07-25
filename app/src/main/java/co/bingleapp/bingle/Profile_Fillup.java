@@ -116,10 +116,10 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
 
         prefs = getSharedPreferences(USER_PREFS, MODE_PRIVATE);
         loc_prefs = getSharedPreferences(LOC_PREFS, MODE_PRIVATE);
-        ruser_Name = prefs.getString("name", null);
-        rlocation = loc_prefs.getString("City", null);
-        remail = prefs.getString("email",null);
-        rUID = prefs.getString("UID",null);
+        ruser_Name = prefs.getString("sharedName", null);
+        rlocation = loc_prefs.getString("sharedCity", null);
+        remail = prefs.getString("sharedEmail",null);
+        rUID = prefs.getString("sharedUID",null);
 
         Toast.makeText(getApplicationContext(),ruser_Name,Toast.LENGTH_SHORT).show();
 
@@ -186,7 +186,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
             name.setHint("Your name");
         }
         //setting already provided name
-        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
         name.setText(preferences.getString("sharedName", null));
 
         return name;
@@ -306,7 +306,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
     private void checkName() {
         if(name.length() >= 3 && name.length() <= 40) {
 
-            SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("sharedName", name.getText().toString());
             edit.apply();
@@ -328,7 +328,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
             final RadioButton selectedGender = findViewById(selectId);
             userGender = selectedGender.getText().toString();
 
-            SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("sharedGender", userGender);
             edit.apply();
@@ -343,7 +343,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
         dobyear = mdatePicker.getYear();
         String date = dobyear + "-" + dobmonth + "-" + dobday;
 
-        SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         edit.putString("sharedDob", date);
         edit.apply();
@@ -378,7 +378,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
         if (mCollege.isChecked()) {
             college = mCollege.getText().toString();
 
-            SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("sharedEducation", college);
             edit.apply();
@@ -395,7 +395,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
             // Do something with the text of each chip
             user_Hobbies = mChips.getChipValues();
 
-        SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         edit.putString("sharedInterests", test);
         edit.apply();
@@ -422,8 +422,8 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
 
             }
         });
-        String ageRange = minage + "-" + maxage;
-        SharedPreferences pref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String ageRange = minage.toString() + "-" + maxage.toString();
+        SharedPreferences pref = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         edit.putString("sharedAgeRange", ageRange);
         edit.apply();
