@@ -29,8 +29,8 @@ import static co.bingleapp.bingle.slider.LOC_PREFS;
 public class MainActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener,
         ProfileSettings.OnFragmentInteractionListener, FindDate.OnFragmentInteractionListener,
-        FixedDate.OnFragmentInteractionListener, Notifications.OnFragmentInteractionListener,
-        Settings.OnFragmentInteractionListener {
+        FixedDate.OnFragmentInteractionListener, Notifications.OnFragmentInteractionListener, Friends.OnFragmentInteractionListener{
+
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity
     private String rlocation;
     private String userGender;
     private  String matchedName;
+    private DatabaseReference switchToPaired;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity
 
 
         //load settings fragment by default
-        loadFragment(new Settings());
+        loadFragment(new FindDate());
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
@@ -115,9 +116,6 @@ public class MainActivity extends AppCompatActivity
 
         Fragment fragment = null;
         switch (item.getItemId()) {
-            case R.id.navigation_settings:
-                fragment = new Settings();
-                break;
 
             case R.id.navigation_find_date:
                 fragment = new FindDate();
@@ -129,6 +127,10 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.navigation_notifications:
                 fragment = new Notifications();
+                break;
+
+            case R.id.navigation_friends:
+                fragment = new Friends();
                 break;
 
             case R.id.navigation_profile_settings:
@@ -143,7 +145,7 @@ public class MainActivity extends AppCompatActivity
 
         addToActive();
 
-        mPairing.addValueEventListener(new ValueEventListener() {
+        mPairing.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 showData(dataSnapshot);
@@ -157,10 +159,7 @@ public class MainActivity extends AppCompatActivity
         //rest of the code here for find date fragment
     }
 
-    @Override
-    public void onSettingsFragmentInteraction(Uri uri) {
 
-    }
 
     @Override
     public void onFixedDateFragmentInteraction(Uri uri){
@@ -191,6 +190,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onNotificationsFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onFriendsFragmentInteraction(){
 
     }
 
@@ -273,7 +277,12 @@ public class MainActivity extends AppCompatActivity
     private void showData(DataSnapshot dataSnapshot) {
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
             pairedName = ds.getKey();
-            getpartner();
+
+            if(!pairedName.isEmpty()) {
+                getpartner();
+                break;
+            }
+
 
 
 
@@ -288,6 +297,22 @@ public class MainActivity extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 matchedName = dataSnapshot.child(pairedName).child("name").getValue(String.class);
                 Toast.makeText(getApplicationContext(),matchedName,Toast.LENGTH_SHORT).show();
+                if(!pairedName.isEmpty()) {
+                    if (userGender.equals("Male")) {
+                        switchToPaired = FirebaseDatabase.getInstance().getReference("Location").child(rlocation).child("Active").child("ActiveMale").child(rUID);
+                        switchToPaired.removeValue();
+                        switchToPaired = FirebaseDatabase.getInstance().getReference("Location").child(rlocation).child("Active").child("ActiveFemale").child(pairedName);
+                        switchToPaired.removeValue();
+                    }
+                    if (userGender.equals("Female")) {
+                        switchToPaired = FirebaseDatabase.getInstance().getReference("Location").child(rlocation).child("Active").child("ActiveFemale").child(rUID);
+                        switchToPaired.removeValue();
+                        switchToPaired = FirebaseDatabase.getInstance().getReference("Location").child(rlocation).child("Active").child("ActiveMale").child(pairedName);
+                        switchToPaired.removeValue();
+                    }
+                }
+
+
             }
 
             @Override

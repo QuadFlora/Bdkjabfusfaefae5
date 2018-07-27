@@ -191,7 +191,6 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
             name.setSingleLine(true);
             name.setHint("Your name");
         }
-        Toast.makeText(getApplicationContext(),rUID,Toast.LENGTH_SHORT).show();
 
         return name;
     }
@@ -333,7 +332,6 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
             uName = name.getText().toString();
             edit.putString("sharedName", name.getText().toString());
             edit.apply();
-            Toast.makeText(getApplicationContext(),uName,Toast.LENGTH_SHORT).show();
 
             stepComplete();
         } else {
@@ -356,7 +354,6 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("sharedGender", userGender);
             edit.apply();
-            Toast.makeText(getApplicationContext(),rlocation,Toast.LENGTH_SHORT).show();
 
             stepComplete();
         }
@@ -489,6 +486,7 @@ public class Profile_Fillup extends AppCompatActivity implements VerticalStepper
         mDatabase.child("Location").child(rlocation).child("Users").child(rUID).child("interests").setValue(user_Hobbies);
 
         if(userGender.equals("Male")) {
+            mDatabase.child("Location").child(rlocation).child("IdleMale").child(rUID).setValue(rUID);
             mDatabase.child("Location").child(rlocation).child("IdleMale").child(rUID).setValue(rUID);
         }
         if(userGender.equals("Female")){
