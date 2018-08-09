@@ -75,6 +75,7 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mSwitchtoLogin = new Intent(SignUp.this,Login.class);
                 startActivity(mSwitchtoLogin);
+                finish();
             }
         });
     }

@@ -164,6 +164,7 @@ public class Login extends AppCompatActivity  {
             public void onClick(View view) {
                 Intent mSwitchtoSignUp = new Intent(Login.this, SignUp.class);
                 startActivity(mSwitchtoSignUp);
+                finish();
             }
         });
 
@@ -268,20 +269,18 @@ public class Login extends AppCompatActivity  {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                       if(task.isSuccessful());
-                        Toasty.success(getApplicationContext(), "Success", Toast.LENGTH_SHORT, true).show();
-                        Intent mSwitchtoMainactivity = new Intent(Login.this, Profile_Fillup.class);
-                        startActivity(mSwitchtoMainactivity);
-
-
-                        if (!task.isSuccessful()) {
+                       if(task.isSuccessful()) {
+                           Toasty.success(getApplicationContext(), "Success", Toast.LENGTH_SHORT, true).show();
+                           Intent mSwitchtoMainactivity = new Intent(Login.this, Profile_Fillup.class);
+                           startActivity(mSwitchtoMainactivity);
+                           finish();
+                       }
+                       else {
                             Toasty.error(getApplicationContext(),"Authentication Failed", Toast.LENGTH_SHORT,true).show();
-                        }
-                        }
-
-
-                    });
-                };
+                       }
+                    }
+                });
+    };
 
 
 
@@ -334,6 +333,7 @@ public class Login extends AppCompatActivity  {
 
                     Intent mSwitchToMainActivity = new Intent(Login.this, Profile_Fillup.class);
                     startActivity(mSwitchToMainActivity);
+                    finish();
                 }
 
             }
