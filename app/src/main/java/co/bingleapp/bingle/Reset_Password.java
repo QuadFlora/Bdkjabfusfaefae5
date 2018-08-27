@@ -1,6 +1,9 @@
 package co.bingleapp.bingle;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -50,9 +53,20 @@ public class Reset_Password extends AppCompatActivity {
 
     }
 
-    public void ForgotPasswordClick(View view){
-        AttemptForgotPassword();
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
+    public void ForgotPasswordClick(View view){
+        if (isNetworkAvailable() == true)
+        {
+            AttemptForgotPassword();
+        }
+        else
+            showErrorDialog("Not connected to Internet");
     }
 
     private void AttemptForgotPassword(){

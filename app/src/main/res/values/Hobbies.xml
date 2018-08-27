@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Hobbies">
+        <item>Aircraft Spotting</item>
+<item>Airbrushing</item>
+<item>Airsofting</item>
+<item>Acting</item>
+<item>Aeromodeling</item>
+<item>Amateur Astronomy</item>
+<item>Amateur Radio</item>
+<item>Animals/pets/dogs</item>
+<item>Archery</item>
+<item>Arts</item>
+<item>Aquarium</item>
+<item>Astrology</item>
+<item>Astronomy</item>
+<item>Backgammon</item>
+<item>Badminton</item>
+<item>Baseball</item>
+<item>Base Jumping</item>
+<item>Basketball</item>
+<item>Beach/Sun tanning</item>
+<item>Beachcombing</item>
+<item>Beadwork</item>
+<item>Beatboxing</item>
+<item>Becoming A Child Advocate</item>
+<item>Bell Ringing</item>
+<item>Belly Dancing</item>
+<item>Bicycling</item>
+<item>Bicycle Polo</item>
+<item>Bird watching</item>
+<item>Birding</item>
+<item>BMX</item>
+<item>Blacksmithing</item>
+<item>Blogging</item>
+<item>BoardGames</item>
+<item>Boating</item>
+<item>Body Building</item>
+<item>Bonsai Tree</item>
+<item>Bookbinding</item>
+<item>Boomerangs</item>
+<item>Bowling</item>
+<item>Brewing Beer</item>
+<item>Bridge Building</item>
+<item>Bringing Food To The Disabled</item>
+<item>Building A House For Habitat For Humanity</item>
+<item>Building Dollhouses</item>
+<item>Butterfly Watching</item>
+<item>Button Collecting</item>
+<item>Cake Decorating</item>
+<item>Calligraphy</item>
+<item>Camping</item>
+<item>Candle Making</item>
+<item>Canoeing</item>
+<item>Cartooning</item>
+<item>Car Racing</item>
+<item>Casino Gambling</item>
+<item>Cave Diving</item>
+<item>Ceramics</item>
+<item>Cheerleading</item>
+<item>Chess</item>
+<item>Church/church activities</item>
+<item>Cigar Smoking</item>
+<item>Cloud Watching</item>
+<item>Coin Collecting</item>
+<item>Collecting</item>
+<item>Collecting Antiques</item>
+<item>Collecting Artwork</item>
+<item>Collecting Hats</item>
+<item>Collecting Music Albums</item>
+<item>Collecting RPM Records</item>
+<item>Collecting Sports Cards (Baseball, Football, Basketball, Hockey)</item>
+<item>Collecting Swords</item>
+<item>Coloring</item>
+<item>Compose Music</item>
+<item>Computer activities</item>
+<item>Conworlding</item>
+<item>Cooking</item>
+<item>Cosplay</item>
+<item>Crafts</item>
+<item>Crafts (unspecified)</item>
+<item>Crochet</item>
+<item>Crocheting</item>
+<item>Cross-Stitch</item>
+<item>Crossword Puzzles</item>
+<item>Dancing</item>
+<item>Darts</item>
+<item>Diecast Collectibles</item>
+<item>Digital Photography</item>
+<item>Dodgeball</item>
+<item>Dolls</item>
+<item>Dominoes</item>
+<item>Drawing</item>
+<item>Dumpster Diving</item>
+<item>Eating out</item>
+<item>Educational Courses</item>
+<item>Electronics</item>
+<item>Embroidery</item>
+<item>Entertaining</item>
+<item>Exercise (aerobics, weights)</item>
+<item>Falconry</item>
+<item>Fast cars</item>
+<item>Felting</item>
+<item>Fencing</item>
+<item>Fire Poi</item>
+<item>Fishing</item>
+<item>Floorball</item>
+<item>Floral Arrangements</item>
+<item>Fly Tying</item>
+<item>Football</item>
+<item>Four Wheeling</item>
+<item>Freshwater Aquariums</item>
+<item>Frisbee Golf – Frolf</item>
+<item>Games</item>
+<item>Gardening</item>
+<item>Garage Saleing</item>
+<item>Genealogy</item>
+<item>Geocaching</item>
+<item>Ghost Hunting</item>
+<item>Glowsticking</item>
+<item>Gnoming</item>
+<item>Going to movies</item>
+<item>Golf</item>
+<item>Go Kart Racing</item>
+<item>Grip Strength</item>
+<item>Guitar</item>
+<item>Gunsmithing</item>
+<item>Gun Collecting</item>
+<item>Gymnastics</item>
+<item>Gyotaku</item>
+<item>Handwriting Analysis</item>
+<item>Hang gliding</item>
+<item>Herping</item>
+<item>Hiking</item>
+<item>Home Brewing</item>
+<item>Home Repair</item>
+<item>Home Theater</item>
+<item>Horse riding</item>
+<item>Hot air ballooning</item>
+<item>Hula Hooping</item>
+<item>Hunting</item>
+<item>Iceskating</item>
+<item>Illusion</item>
+<item>Impersonations</item>
+<item>Internet</item>
+<item>Inventing</item>
+<item>Jet Engines</item>
+<item>Jewelry Making</item>
+<item>Jigsaw Puzzles</item>
+<item>Juggling</item>
+<item>Keep A Journal</item>
+<item>Jump Roping</item>
+<item>Kayaking</item>
+<item>Kitchen Chemistry</item>
+<item>Kites</item>
+<item>Kite Boarding</item>
+<item>Knitting</item>
+<item>Knotting</item>
+<item>Lasers</item>
+<item>Lawn Darts</item>
+<item>Learn to Play Poker</item>
+<item>Learning A Foreign Language</item>
+<item>Learning An Instrument</item>
+<item>Learning To Pilot A Plane</item>
+<item>Leathercrafting</item>
+<item>Legos</item>
+<item>Letterboxing</item>
+<item>Listening to music</item>
+<item>Locksport</item>
+<item>Lacrosse</item>
+<item>Macramé</item>
+<item>Magic</item>
+<item>Making Model Cars</item>
+<item>Marksmanship</item>
+<item>Martial Arts</item>
+<item>Matchstick Modeling</item>
+<item>Meditation</item>
+<item>Microscopy</item>
+<item>Metal Detecting</item>
+<item>Model Railroading</item>
+<item>Model Rockets</item>
+<item>Modeling Ships</item>
+<item>Models</item>
+<item>Motorcycles</item>
+<item>Mountain Biking</item>
+<item>Mountain Climbing</item>
+<item>Musical Instruments</item>
+<item>Nail Art</item>
+<item>Needlepoint</item>
+<item>Owning An Antique Car</item>
+<item>Origami</item>
+<item>Painting</item>
+<item>Paintball</item>
+<item>Papermaking</item>
+<item>Papermache</item>
+<item>Parachuting</item>
+<item>Paragliding or Power Paragliding</item>
+<item>Parkour</item>
+<item>People Watching</item>
+<item>Photography</item>
+<item>Piano</item>
+<item>Pinochle</item>
+<item>Pipe Smoking</item>
+<item>Planking</item>
+<item>Playing music</item>
+<item>Playing team sports</item>
+<item>Pole Dancing</item>
+<item>Pottery</item>
+<item>Powerboking</item>
+<item>Protesting</item>
+<item>Puppetry</item>
+<item>Pyrotechnics</item>
+<item>Quilting</item>
+<item>Racing Pigeons</item>
+<item>Rafting</item>
+<item>Railfans</item>
+<item>Rapping</item>
+<item>R/C Boats</item>
+<item>R/C Cars</item>
+<item>R/C Helicopters</item>
+<item>R/C Planes</item>
+<item>Reading</item>
+<item>Reading To The Elderly</item>
+<item>Relaxing</item>
+<item>Renaissance Faire</item>
+<item>Renting movies</item>
+<item>Rescuing Abused Or Abandoned Animals</item>
+<item>Robotics</item>
+<item>Rock Balancing</item>
+<item>Rock Collecting</item>
+<item>Rockets</item>
+<item>Rocking AIDS Babies</item>
+<item>Roleplaying</item>
+<item>Running</item>
+<item>Saltwater Aquariums</item>
+<item>Sand Castles</item>
+<item>Scrapbooking</item>
+<item>Scuba Diving</item>
+<item>Self Defense</item>
+<item>Sewing</item>
+<item>Shark Fishing</item>
+<item>Skeet Shooting</item>
+<item>Skiing</item>
+<item>Shopping</item>
+<item>Singing In Choir</item>
+<item>Skateboarding</item>
+<item>Sketching</item>
+<item>Sky Diving</item>
+<item>Slack Lining</item>
+<item>Sleeping</item>
+<item>Slingshots</item>
+<item>Slot Car Racing</item>
+<item>Snorkeling</item>
+<item>Snowboarding</item>
+<item>Soap Making</item>
+<item>Soccer</item>
+<item>Socializing with friends/neighbors</item>
+<item>Speed Cubing (rubix cube)</item>
+<item>Spelunkering</item>
+<item>Spending time with family/kids</item>
+<item>Stamp Collecting</item>
+<item>Storm Chasing</item>
+<item>Storytelling</item>
+<item>String Figures</item>
+<item>Surfing</item>
+<item>Surf Fishing</item>
+<item>Survival</item>
+<item>Swimming</item>
+<item>Tatting</item>
+<item>Taxidermy</item>
+<item>Tea Tasting</item>
+<item>Tennis</item>
+<item>Tesla Coils</item>
+<item>Tetris</item>
+<item>Texting</item>
+<item>Textiles</item>
+<item>Tombstone Rubbing</item>
+<item>Tool Collecting</item>
+<item>Toy Collecting</item>
+<item>Train Collecting</item>
+<item>Train Spotting</item>
+<item>Traveling</item>
+<item>Treasure Hunting</item>
+<item>Trekkie</item>
+<item>Tutoring Children</item>
+<item>TV watching</item>
+<item>Ultimate Frisbee</item>
+<item>Urban Exploration</item>
+<item>Video Games</item>
+<item>Violin</item>
+<item>Volunteer</item>
+<item>Walking</item>
+<item>Warhammer</item>
+<item>Watching sporting events</item>
+<item>Weather Watcher</item>
+<item>Weightlifting</item>
+<item>Windsurfing</item>
+<item>Wine Making</item>
+<item>Wingsuit Flying</item>
+<item>Woodworking</item>
+<item>Working In A Food Pantry</item>
+<item>Working on cars</item>
+<item>World Record Breaking</item>
+<item>Wrestling</item>
+<item>Writing</item>
+<item>Writing Music</item>
+<item>Writing Songs</item>
+<item>Yoga</item>
+<item>YoYo</item>
+<item>Ziplining</item>
+<item>Zumba</item>
+<item>Play jigsaw puzzles</item>
+<item>Play crossword puzzles</item>
+<item>Play brain teasers</item>
+<item>Play card games</item>
+<item>Play chess</item>
+<item>Play an instrument</item>
+<item>Master a new language</item>
+<item>Participate in trivia contests</item>
+<item>Cricket</item>
+<item>Collecting Gadgets</item>
+<item>Crafting</item>
+<item>Cake decorating</item>
+<item>Baking</item>
+<item>Carpentry</item>
+<item>Graphic design</item>
+
+    </string-array>
+</resources>

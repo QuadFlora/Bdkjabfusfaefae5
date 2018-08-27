@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "631077102970",
+    "firebase_url": "https://bingle-ece22.firebaseio.com",
+    "project_id": "bingle-ece22",
+    "storage_bucket": "bingle-ece22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631077102970:android:bc5b67f6858267c2",
+        "android_client_info": {
+          "package_name": "co.bingleapp.bingle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "631077102970-j66qmmosj16f5ekj67in53k3bcpth25u.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "631077102970-j66qmmosj16f5ekj67in53k3bcpth25u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYgaKYqV22Hr47txcUONgsSYj2hC-FgcE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

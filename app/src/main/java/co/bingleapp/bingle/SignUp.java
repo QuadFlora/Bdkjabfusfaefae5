@@ -1,6 +1,9 @@
 package co.bingleapp.bingle;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,11 +16,14 @@ import android.widget.TextView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.app.AlertDialog;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import es.dmoral.toasty.Toasty;
 
 public class SignUp extends AppCompatActivity {
 
@@ -69,12 +75,26 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mSwitchtoLogin = new Intent(SignUp.this,Login.class);
                 startActivity(mSwitchtoLogin);
+                finish();
             }
         });
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
     public void SignUpClick(View view){
-        attemptRegistration();
+        if (isNetworkAvailable() == true)
+        {
+            attemptRegistration();
+        }
+        else
+            Toasty.warning(getApplicationContext(), "Not connected to internet!", Toast.LENGTH_SHORT, true).show();
+
     }
 
 
@@ -152,7 +172,7 @@ public class SignUp extends AppCompatActivity {
                 Log.d("Bingle", "createUser onComplete:" + task.isSuccessful());
                 SignUpProgress.setVisibility(View.INVISIBLE);
                 if(task.isSuccessful()){
-                    showSuccessDialog("Sign Up Successful");
+                    showSuccessDialog("Sign up successful");
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -165,7 +185,7 @@ public class SignUp extends AppCompatActivity {
                 }
 
                 if(!task.isSuccessful()){
-                    showErrorDialog("Sign Up attempt failed");
+                    showErrorDialog("Sign up attempt failed");
                 }
 
             }
